@@ -1,0 +1,9 @@
+{
+  "node_name": "Deck Commander",
+  "node_type": "Central Hub",
+  "hardware": ["Raspberry Pi", "Solar Monitor", "LoRa Gateway", "HAM Radio Interface"],
+  "services": ["Dashboard Server", "BBS Server", "Ollama AI", "Kiwix Wikipedia Server"],
+  "report_interval_minutes": 5,
+  "power_mode": "Normal",
+  "priority": ["AI", "LoRa", "HAM"]
+}

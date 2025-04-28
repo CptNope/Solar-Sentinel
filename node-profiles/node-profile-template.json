@@ -1,0 +1,9 @@
+{
+  "node_name": "Example Node",
+  "node_type": "Example Type",
+  "hardware": ["Example Hardware"],
+  "services": ["Example Service"],
+  "report_interval_minutes": 10,
+  "power_mode": "Normal",
+  "priority": ["Example Priority"]
+}

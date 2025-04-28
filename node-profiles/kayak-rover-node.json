@@ -1,0 +1,9 @@
+{
+  "node_name": "Kayak Rover",
+  "node_type": "Marine Sensor Node",
+  "hardware": ["ESP32", "GPS", "Water Sensor", "LoRa"],
+  "services": ["GPS", "Water Temp", "Signal Relay"],
+  "report_interval_minutes": 10,
+  "power_mode": "Low Power",
+  "priority": ["LoRa Mesh", "Water Data"]
+}

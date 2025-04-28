@@ -1,0 +1,13 @@
+# SolarSentinel - Kiwix Server Docker Compose
+
+version: '3.3'
+
+services:
+  kiwix:
+    image: kiwix/kiwix-serve
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./zimfiles:/data
+    command: ["wikipedia_en_all_maxi.zim"]
+    restart: unless-stopped

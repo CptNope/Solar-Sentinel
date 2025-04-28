@@ -1,0 +1,9 @@
+{
+  "node_name": "Field Tracker 1",
+  "node_type": "GPS Field Node",
+  "hardware": ["ESP32", "GPS Module", "LoRa"],
+  "services": ["GPS Reporting", "LoRa Status Beacon"],
+  "report_interval_minutes": 15,
+  "power_mode": "Ultra-Low Power",
+  "priority": ["LoRa"]
+}
