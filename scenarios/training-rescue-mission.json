@@ -1,0 +1,19 @@
+{
+  "scenario_name": "Disaster Recovery Training",
+  "description": "Simulated search-and-rescue drill with dynamic field objectives.",
+  "missions": [
+    {
+      "id": "rescue-001",
+      "title": "Locate Missing Drone",
+      "location": "42.3962,-71.1245",
+      "objectives": [
+        "Pinpoint crash site.",
+        "Recover payload.",
+        "Report coordinates back to base."
+      ],
+      "rewards": {
+        "xp": 30
+      }
+    }
+  ]
+}

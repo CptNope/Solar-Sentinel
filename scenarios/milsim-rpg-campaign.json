@@ -1,0 +1,20 @@
+{
+  "scenario_name": "Operation Blackout",
+  "description": "Tactical Milsim RPG campaign with branching objectives.",
+  "missions": [
+    {
+      "id": "blackout-001",
+      "title": "Establish Forward Operating Node",
+      "location": "42.3980,-71.1205",
+      "objectives": [
+        "Scout location.",
+        "Deploy relay station.",
+        "Defend position until extraction."
+      ],
+      "rewards": {
+        "xp": 100,
+        "items": ["Encrypted Radio Beacon"]
+      }
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "scenario_name": "Example Mission Pack",
+  "description": "This is an example training or RPG scenario.",
+  "missions": [
+    {
+      "id": "mission-001",
+      "title": "Deploy Weather Node",
+      "location": "42.3942,-71.1223",
+      "objectives": [
+        "Travel to target coordinates.",
+        "Deploy sensor package.",
+        "Send status report."
+      ],
+      "rewards": {
+        "xp": 50,
+        "items": ["Field Repair Kit"]
+      },
+      "ar_clues": [
+        {
+          "description": "Scan old tree at coordinates for hidden clue.",
+          "coordinates": "42.3945,-71.1230"
+        }
+      ]
+    }
+  ]
+}
