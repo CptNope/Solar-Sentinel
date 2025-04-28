@@ -133,9 +133,9 @@ SolarSentinel is open to:
 
 # 💬 Contact & Links
 
-- GitHub Repository: [Link Here]
-- Official GitHub Pages Site: [Link Here]
-- Project Founder: [Your Name or Alias]
+- GitHub Repository: https://github.com/CptNope/Solar-Sentinel
+- Official GitHub Pages Site: https://CptNope.github.io/Solar-Sentinel
+- Project Founder: Jeremy Andersonhttps://jeremyanderson.tech/
 
 ---
 
