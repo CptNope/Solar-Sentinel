@@ -2,10 +2,52 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#141b18">
   <title>SolarSentinel Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+  <script defer src="{{ url_for('static', filename='dashboard.js') }}"></script>
 </head>
 <body>
-  <h1>Welcome to SolarSentinel</h1>
-  <p><a href="/status">View System Status</a></p>
+  <a class="skip" href="#main">Skip to dashboard</a>
+  <aside class="sidebar">
+    <a href="/" class="brand"><span class="brand-icon">☀</span><span>SolarSentinel<small>FIELD NETWORK</small></span></a>
+    <div class="nav-label">WORKSPACE</div>
+    <nav aria-label="Main navigation">
+      <a class="active" href="#main"><span>◈</span> Overview</a>
+      <a href="#nodes"><span>⌁</span> Field nodes</a>
+      <a href="#reports"><span>≡</span> Activity & reports</a>
+    </nav>
+    <div class="sidebar-bottom"><span class="tiny-label">BUILT FOR THE FIELD</span><p>Stay connected.<br>Beyond the grid.</p><span class="version">LOCAL OPERATIONS / v0.2</span></div>
+  </aside>
+  <main id="main">
+    <header class="topbar"><span class="breadcrumb">WORKSPACE <span>/</span> OVERVIEW</span><div class="top-actions"><span id="connection" class="connection" role="status">Connecting…</span><button id="access-button" class="quiet">Operator access</button></div></header>
+    <div class="content">
+      <div id="demo-banner" class="banner" hidden>DEMO WORKSPACE <span>Sample data only. Check-ins age naturally; no radio or sensors are connected.</span></div>
+      <div id="network-banner" class="banner error" role="alert" hidden>Server unavailable. Displayed readings may be outdated. Your report draft stays on this device.</div>
+      <section class="heading"><div><p class="eyebrow">YOUR NETWORK. AT A GLANCE.</p><h1>Field overview<span>.</span></h1><p class="subtitle">A clear picture of your people, power, and field activity.</p></div><button id="new-report" class="primary">＋ New field report</button></section>
+      <section class="metrics" aria-label="Network summary">
+        <article class="metric"><span class="metric-label">REGISTERED NODES <span>⌁</span></span><strong id="node-count">—</strong><small id="node-detail">Waiting for server</small></article>
+        <article class="metric"><span class="metric-label">ONLINE NOW <span class="green">●</span></span><strong id="online-count">—</strong><small>Check-in within 2 minutes</small></article>
+        <article class="metric"><span class="metric-label">NEEDS ATTENTION <span class="amber">△</span></span><strong id="attention-count">—</strong><small>Overdue or low battery nodes</small></article>
+        <article class="metric"><span class="metric-label">OPEN REPORTS <span>≡</span></span><strong id="report-count">—</strong><small>Awaiting resolution</small></article>
+      </section>
+      <section id="nodes" class="panel">
+        <div class="panel-heading"><div><h2>Field nodes <span id="node-badge" class="badge">0</span></h2><p>Latest check-ins from your local network</p></div><button id="check-in-button" class="secondary">＋ Check in a node</button></div>
+        <div class="table-scroll"><table><thead><tr><th>NODE / ID</th><th>CONNECTION</th><th>BATTERY</th><th>VOLTAGE</th><th>LAST POSITION</th><th>LAST SEEN</th></tr></thead><tbody id="node-rows"></tbody></table></div>
+        <div id="nodes-empty" class="empty" hidden><span>⌁</span><h3>Your field network starts here</h3><p>Check in your first node. Missing telemetry stays unknown until a device reports it.</p></div>
+        <footer class="panel-footer"><span>● Online &lt; 2m <span class="separator">/</span> Stale 2–10m <span class="separator">/</span> Offline ≥ 10m</span><span id="updated">Not yet synced</span></footer>
+      </section>
+      <div class="lower-grid">
+        <section id="reports" class="panel"><div class="panel-heading"><div><h2>Field activity</h2><p>Latest 200 reports · newest first</p></div><label class="sr-only" for="report-filter">Filter reports</label><select id="report-filter"><option value="all">All reports</option><option value="open">Open reports</option><option value="urgent">Urgent reports</option><option value="resolved">Resolved reports</option></select></div><div id="report-list" class="report-list"></div></section>
+        <aside class="panel readiness"><p class="eyebrow">NETWORK NOTES</p><h2>Ready for what’s next.</h2><p>Keep check-ins regular and field reports concise. This workspace runs locally with no external fonts, scripts, or map services.</p><div class="note-row"><span>01</span><div><h3>Freshness matters</h3><p>Overdue nodes are flagged automatically. Battery warnings use fresh readings only.</p></div></div><div class="note-row"><span>02</span><div><h3>Unknown means unknown</h3><p>No sensor reading? You’ll see a dash, never a made-up healthy status.</p></div></div><div class="note-row"><span>03</span><div><h3>Hardware comes next</h3><p>Node check-ins use the local API. LoRa and APRS adapters are not connected yet.</p></div></div><div class="local-mark">↳ STORED ON YOUR FIELD SERVER</div></aside>
+      </div>
+      <footer class="page-footer"><span>SOLARSENTINEL <span class="separator">/</span> OPERATE BEYOND THE GRID</span><span>Local workspace · Refreshes every 10 seconds</span></footer>
+    </div>
+  </main>
+  <dialog id="report-dialog"><form id="report-form"><div class="dialog-heading"><h2>New field report</h2><button type="button" class="close" data-close aria-label="Close">×</button></div><p class="subtitle">Drafts are saved on this device until submitted.</p><label>Call sign / team<input name="author" maxlength="80" required placeholder="e.g. Trail team"></label><label>Priority<select name="priority"><option value="routine">Routine</option><option value="important">Important</option><option value="urgent">Urgent</option></select></label><label>Report<textarea name="message" maxlength="2000" rows="5" required placeholder="What happened? Where? What is needed?"></textarea></label><p class="form-error" role="alert"></p><button class="primary" type="submit">Submit report</button></form></dialog>
+  <dialog id="node-dialog"><form id="node-form"><div class="dialog-heading"><h2>Check in a node</h2><button type="button" class="close" data-close aria-label="Close">×</button></div><p class="subtitle">Manual check-in. Use the same ID to update a node. Empty telemetry clears its previous reading.</p><div class="form-grid"><label>Node ID<input name="id" maxlength="64" required placeholder="trail-01"></label><label>Display name<input name="name" maxlength="80" required placeholder="Trail team"></label><label>Battery (%)<input name="battery" type="number" min="0" max="100" step="any"></label><label>Voltage (V)<input name="voltage" type="number" min="0" max="100" step="any"></label><label>Latitude<input name="latitude" type="number" min="-90" max="90" step="any"></label><label>Longitude<input name="longitude" type="number" min="-180" max="180" step="any"></label></div><p class="form-error" role="alert"></p><button class="primary" type="submit">Save check-in</button></form></dialog>
+  <dialog id="access-dialog"><form id="access-form"><div class="dialog-heading"><h2>Operator access</h2><button type="button" class="close" data-close aria-label="Close">×</button></div><p class="subtitle">Enter the server’s access token to submit reports and node updates. It stays in memory for this page only.</p><label>Access token<input name="token" type="password" autocomplete="off" required></label><p class="form-error" role="alert"></p><button class="primary" type="submit">Use token</button><button class="quiet" id="lock" type="button">Clear access</button></form></dialog>
+  <div id="toast" role="status" hidden></div>
 </body>
 </html>

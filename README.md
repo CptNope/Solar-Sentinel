@@ -1,5 +1,20 @@
 # SolarSentinel ⚡ - Tactical AI Field Network
 
+## Working dashboard preview
+
+The local dashboard now includes persistent node check-ins, field reports, freshness indicators, operator-token protection for writes, and a separate demo workspace. Start with the [dashboard quickstart](dashboard/README.md).
+
+**Project status:** the dashboard is an early working implementation. The broader radio mesh, AI/RAG, offline PWA, AR/VR, and hardware integrations described below remain plans or starter examples, not verified end-to-end capabilities. The existing solar monitor generates simulated readings.
+
+```sh
+python -m venv .venv
+# Activate the environment, then:
+python -m pip install -r requirements.txt
+python -m dashboard.app --demo
+```
+
+Open `http://127.0.0.1:5000`. Omit `--demo` for an empty live workspace.
+
 **The First Fully Modular, Solar-Powered, AI-Enhanced Off-Grid Network.**  
 Built for real-world missions, survival operations, field training, tactical gaming, and exploration.
 
