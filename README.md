@@ -392,3 +392,4 @@ SolarSentinel is released under the [MIT License](LICENSE).
 - [Project site](https://CptNope.github.io/Solar-Sentinel)
 - [Dashboard reference](dashboard/README.md)
 - Project founder: [Jeremy Anderson](https://github.com/CptNope) · [Website](https://jeremyanderson.tech/)
+- Built by [Jeremy Anderson Tech](https://jeremyanderson.tech/) · [Project page](https://jeremyanderson.tech/project/solar-sentinel/)
